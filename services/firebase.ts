@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, User } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 export interface AuthUser {
   uid: string;
@@ -21,6 +22,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Export Firestore instance
+export { db };
 
 export const login = async (email: string, password: string): Promise<void> => {
   await signInWithEmailAndPassword(auth, email, password);

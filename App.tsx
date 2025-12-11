@@ -15,7 +15,6 @@ function App() {
 
   // Initialize Auth Listener
   useEffect(() => {
-    // subscribeAuth handles both Mock and Real Firebase internally
     const unsubscribe = subscribeAuth(async (authUser) => {
       if (authUser) {
         // Map AuthUser to our App User type
@@ -56,8 +55,28 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-500 border-t-transparent"></div>
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#f7fafc',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      }}>
+        <div style={{
+          width: '48px',
+          height: '48px',
+          border: '4px solid #e2e8f0',
+          borderTop: '4px solid #ed8936',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }}></div>
+        <style>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -65,6 +84,8 @@ function App() {
   if (!user) {
     return <ModernAuthPage />;
   }
+
+
 
   return (
     <Layout 
