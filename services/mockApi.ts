@@ -23,60 +23,7 @@ const API_BASE_URL = 'http://localhost:5000/api';
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const EXPENSES_KEY = 'kec_expenses';
 
-// Sample data for demo purposes
-const createSampleExpenses = (userId: string): Expense[] => {
-  const today = new Date();
-  const sampleExpenses: Omit<Expense, 'id' | 'createdAt'>[] = [
-    {
-      userId,
-      amount: 25.50,
-      category: 'Food',
-      note: 'Lunch at downtown cafe',
-      date: new Date(today.getTime() - 1 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    },
-    {
-      userId,
-      amount: 45.00,
-      category: 'Transport',
-      note: 'Gas for the car',
-      date: new Date(today.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    },
-    {
-      userId,
-      amount: 120.00,
-      category: 'Utilities',
-      note: 'Monthly internet bill',
-      date: new Date(today.getTime() - 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    },
-    {
-      userId,
-      amount: 15.99,
-      category: 'Entertainment',
-      note: 'Netflix subscription',
-      date: new Date(today.getTime() - 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    },
-    {
-      userId,
-      amount: 85.00,
-      category: 'Health',
-      note: 'Doctor visit copay',
-      date: new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    },
-    {
-      userId,
-      amount: 200.00,
-      category: 'Education',
-      note: 'Online course subscription',
-      date: new Date(today.getTime() - 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-    }
-  ];
 
-  return sampleExpenses.map(expense => ({
-    ...expense,
-    id: generateId(),
-    createdAt: Date.now() - Math.random() * 1000000
-  }));
-};
 
 // ------------------------------------------------------------------
 // API SERVICE
@@ -107,15 +54,8 @@ export const getExpenses = async (userId: string): Promise<Expense[]> => {
   const allStr = localStorage.getItem(EXPENSES_KEY);
   let all: Expense[] = allStr ? JSON.parse(allStr) : [];
   
-  // Check if user has any expenses, if not, add sample data
+  // Get user expenses without adding sample data
   const userExpenses = all.filter(e => e.userId === userId);
-  if (userExpenses.length === 0) {
-    const sampleExpenses = createSampleExpenses(userId);
-    all.push(...sampleExpenses);
-    localStorage.setItem(EXPENSES_KEY, JSON.stringify(all));
-    return sampleExpenses.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }
-  
   return userExpenses.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
 
