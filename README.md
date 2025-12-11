@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
   <h1>KEC Expense Tracker</h1>
   <p>A modern, responsive expense tracker dashboard built with React and powered by Firebase/Firestore for real-time data synchronization across all devices.</p>
 </div>
