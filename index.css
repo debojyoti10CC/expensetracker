@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 0 0 0;
+  --skeleton: 229 231 235;
+  --border: 229 231 235;
+  --btn-border: 229 231 235;
+  --input: 229 231 235;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 9 9 11;
+  --foreground: 255 255 255;
+  --skeleton: 39 39 42;
+  --border: 39 39 42;
+  --btn-border: 39 39 42;
+  --input: 39 39 42;
+}
+
+body {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.g-button {
+  border-radius: var(--radius);
+  border: 1px solid rgb(var(--btn-border));
+}
+
+@keyframes ripple {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(0.9); }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg);
+  }
+}
+
+.animate-ripple {
+  animation: ripple 2s ease calc(var(--i, 0) * 0.2s) infinite;
+}
+
+.animate-orbit {
+  animation: orbit calc(var(--duration) * 1s) linear infinite;
+}
