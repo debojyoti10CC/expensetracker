@@ -16,7 +16,7 @@ This application provides a robust and secure way to manage personal finances, f
 * **Dashboard Analytics:** A visual overview of spending, including total expenses, monthly totals, and a spending breakdown by category, displayed in a modern Bento Grid format.
 * **Transaction Management:** A dedicated page for viewing, searching, filtering, adding, editing, and deleting transactions (CRUD operations).
 * **Offline Support:** Works offline with Firebase caching.
-* **Automatic Sample Data:** New users are automatically provided with sample expenses to get started immediately.
+* **Automatic Sample Data:** New users are automatically provided with sample expenses to get started immediately..
 
 ---
 
